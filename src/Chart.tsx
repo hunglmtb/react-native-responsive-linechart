@@ -7,12 +7,13 @@ import clamp from 'lodash.clamp'
 import minBy from 'lodash.minby'
 import maxBy from 'lodash.maxby'
 import debounce from 'lodash.debounce'
-import Svg, { G, Mask, Defs, Rect } from 'react-native-svg'
+import Svg, { Mask, Defs, Rect } from 'react-native-svg'
 import { useComponentDimensions } from './useComponentDimensions'
 import { AxisDomain, ChartDataPoint, Padding, ViewPort, TouchEvent, XYValue } from './types'
 import { ChartContextProvider } from './ChartContext'
 import { calculateDataDimensions, calculateViewportDomain } from './Chart.utils'
 import { scalePointToDimensions } from './utils'
+import { G } from './svg'
 
 type Props = {
   /** All styling can be used except for padding. If you need padding, use the explicit `padding` prop below.*/
@@ -31,6 +32,8 @@ type Props = {
   disableGestures?: boolean
   /** Padding of the chart. Use this instead of setting padding in the `style` prop. */
   padding?: Padding
+
+  svgStyle?: ViewStyle
 }
 
 export type ChartHandle = {
@@ -39,7 +42,7 @@ export type ChartHandle = {
 
 const Chart: React.FC<Props> = React.memo(
   React.forwardRef<ChartHandle, Props>((props, ref) => {
-    const { style, children, data = [], padding, xDomain, yDomain, viewport, disableGestures, disableTouch } = deepmerge(computeDefaultProps(props), props)
+    const { style, children, data = [], padding, xDomain, yDomain, viewport, disableGestures, disableTouch, svgStyle} = deepmerge(computeDefaultProps(props), props)
     const { dimensions, onLayout } = useComponentDimensions()
     const dataDimensions = calculateDataDimensions(dimensions, padding)
 
@@ -180,7 +183,7 @@ const Chart: React.FC<Props> = React.memo(
                         lastTouch,
                       }}
                     >
-                      <Svg width={dimensions.width} height={dimensions.height}>
+                      <Svg width={dimensions.width} height={dimensions.height} style={svgStyle}>
                         <G translateX={padding.left} translateY={padding.top}>
                           {otherComponents}
                           <Defs>

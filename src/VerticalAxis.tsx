@@ -1,10 +1,11 @@
 import deepmerge from 'deepmerge'
 import * as React from 'react'
-import { G, Line, Text } from 'react-native-svg'
+import { Line, Text } from 'react-native-svg'
 import ChartContext from './ChartContext'
 import { Label, Stroke } from './types'
 import { scalePointToDimensions } from './utils'
 import { calculateTickValues } from './Axis.utils'
+import { G } from './svg'
 
 type Props = {
   theme?: {

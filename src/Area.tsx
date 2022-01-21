@@ -1,9 +1,10 @@
 import deepmerge from 'deepmerge'
 import * as React from 'react'
-import { Defs, Stop, LinearGradient, Path, G } from 'react-native-svg'
+import { Defs, Stop, LinearGradient, Path} from 'react-native-svg'
 import ChartContext from './ChartContext'
 import { ChartDataPoint, Gradient, Smoothing } from './types'
 import { appendPointsToPath, scalePointsToDimensions, svgPath } from './utils'
+import { G } from './svg'
 
 type Props = {
   /** Theme for the area */
