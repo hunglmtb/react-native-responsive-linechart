@@ -1,6 +1,6 @@
 {
   "name": "react-native-responsive-linechart-patch",
-  "version": "5.7.3",
+  "version": "5.7.4",
   "author": "Xander Deseyn",
   "license": "MIT",
   "main": "lib/index.js",
